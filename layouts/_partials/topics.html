@@ -1,0 +1,8 @@
+{{/* Topic filter bar. Built from the categories used in posts, so a new category shows up by itself. */}}
+{{ $current := . }}
+<nav class="topics" aria-label="Topics">
+  <a class="chip{{ if .IsHome }} active{{ end }}" href="{{ site.Home.RelPermalink }}">All articles</a>
+  {{ range site.Taxonomies.categories.ByCount }}
+    <a class="chip{{ if eq $current.RelPermalink .Page.RelPermalink }} active{{ end }}" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="count">{{ .Count }}</span></a>
+  {{ end }}
+</nav>

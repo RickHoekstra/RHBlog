@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------
+# Site configuration. Everything you normally need to change
+# lives in this one file.
+# ---------------------------------------------------------------
+
+# Your real address. The GitHub Actions workflow overrides this
+# automatically during deployment, so it only matters locally.
+baseURL = "https://rickhoekstra.com/"
+locale = "en"
+title = "Rick Hoekstra"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 7            # 1 featured post + 6 cards on the first page
+
+[taxonomies]
+  category = "categories"  # the main topics: M365, UniFi, 3CX, ...
+  tag = "tags"             # details: Intune, VLAN, SIP trunk, ...
+
+[outputs]
+  home = ["html", "rss", "json"]   # json = search index
+
+[params]
+  author = "Rick Hoekstra"
+  tagline = "Notes from the field on Microsoft 365, UniFi and 3CX."
+  description = "A technical blog about Microsoft 365, UniFi networking and 3CX telephony: how-tos, troubleshooting notes and lessons learned."
+  # Short text shown in the author block on the homepage.
+  bio = "IT engineer writing down what I learn while working with Microsoft 365, UniFi and 3CX, so you don't have to figure it out twice."
+
+  # Leave a value empty ("") to hide that link.
+  [params.social]
+    github = "https://github.com/YOUR-USERNAME"
+    linkedin = "https://www.linkedin.com/in/YOUR-PROFILE"
+    email = ""
+
+[menus]
+  [[menus.main]]
+    name = "Blog"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    name = "Topics"
+    pageRef = "/categories"
+    weight = 20
+  [[menus.main]]
+    name = "Tools"
+    pageRef = "/tools"
+    weight = 30
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 40
+  [[menus.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 50
+
+[markup]
+  [markup.highlight]
+    noClasses = false      # colours come from assets/css/syntax.css
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3

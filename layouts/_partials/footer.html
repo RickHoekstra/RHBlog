@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>&copy; {{ now.Year }} {{ site.Params.author }}</p>
+    <p class="footer-links">
+      {{ with site.Params.social.github }}<a href="{{ . }}" rel="me noopener">GitHub</a>{{ end }}
+      {{ with site.Params.social.linkedin }}<a href="{{ . }}" rel="me noopener">LinkedIn</a>{{ end }}
+      <a href="{{ "posts/" | relURL }}">Archive</a>
+      {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a>{{ end }}
+    </p>
+  </div>
+</footer>

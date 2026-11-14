@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post-header">
+    {{ partial "post-cats.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ if eq .Section "posts" }}{{ partial "post-meta.html" . }}{{ end }}
+  </header>
+  {{ with partial "cover-resource.html" . }}
+  <div class="post-cover">{{ partial "cover.html" (dict "page" $ "width" 1200) }}</div>
+  {{ end }}
+  {{ if and (ne .Params.toc false) (gt (len (findRE "<h[23]" .Content)) 2) }}
+  <details class="toc" open>
+    <summary>On this page</summary>
+    {{ .TableOfContents }}
+  </details>
+  {{ end }}
+  <div class="prose">
+    {{ .Content }}
+  </div>
+  {{ with .GetTerms "tags" }}
+  <p class="tags">{{ range . }}<a class="chip small" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}</p>
+  {{ end }}
+  {{ if eq .Section "posts" }}
+  <nav class="post-nav" aria-label="More posts">
+    {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span class="meta">&larr; Previous</span>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span class="meta">Next &rarr;</span>{{ .Title }}</a>{{ end }}
+  </nav>
+  {{ end }}
+</article>
+{{ end }}

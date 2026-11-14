@@ -1,0 +1,9 @@
+<article class="card">
+  <a class="card-cover" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">{{ partial "cover.html" (dict "page" . "width" 640) }}</a>
+  <div class="card-body">
+    {{ partial "post-cats.html" . }}
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="summary">{{ .Description | default (.Summary | plainify | truncate 140) }}</p>
+    {{ partial "post-meta.html" . }}
+  </div>
+</article>

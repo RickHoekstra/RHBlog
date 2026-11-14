@@ -1,0 +1,16 @@
+{{ define "main" }}
+<p class="eyebrow">Built to share</p>
+<h1 class="page-title">{{ .Title }}</h1>
+<div class="prose term-intro">{{ .Content }}</div>
+<div class="grid">
+  {{ range hugo.Data.tools }}
+  <article class="card tool">
+    <div class="card-body">
+      {{ with .type }}<p class="cats"><span class="cat">{{ . }}</span></p>{{ end }}
+      <h3>{{ if .url }}<a href="{{ .url }}" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+      <p class="summary">{{ .description }}</p>
+    </div>
+  </article>
+  {{ end }}
+</div>
+{{ end }}

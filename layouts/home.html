@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $paginator := .Paginate $posts }}
+{{ $first := eq $paginator.PageNumber 1 }}
+
+{{ if $first }}
+<section class="hero">
+  <p class="eyebrow">The blog</p>
+  <h1>{{ site.Params.tagline }}</h1>
+</section>
+{{ else }}
+<h1 class="page-title">All articles</h1>
+{{ end }}
+
+{{ partial "topics.html" . }}
+
+{{ $list := $paginator.Pages }}
+{{ if and $first (gt (len $list) 0) }}
+  {{ with index $list 0 }}
+  <article class="featured">
+    <a class="featured-cover" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">{{ partial "cover.html" (dict "page" . "width" 1200) }}</a>
+    <div class="featured-body">
+      <p class="eyebrow">Latest post</p>
+      {{ partial "post-cats.html" . }}
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p class="summary">{{ .Description | default (.Summary | plainify | truncate 220) }}</p>
+      {{ partial "post-meta.html" . }}
+    </div>
+  </article>
+  {{ end }}
+  {{ $list = after 1 $list }}
+{{ end }}
+
+{{ if $list }}
+<section aria-label="Articles">
+  {{ if $first }}<h2 class="section-title">More articles</h2>{{ end }}
+  <div class="grid">
+    {{ range $list }}{{ partial "post-card.html" . }}{{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ partial "pagination.html" . }}
+
+{{ if $first }}
+<section class="author">
+  <div>
+    <p class="eyebrow">About the author</p>
+    <h2>{{ site.Params.author }}</h2>
+    <p>{{ site.Params.bio }}</p>
+  </div>
+  <a class="btn" href="{{ "about/" | relURL }}">More about me</a>
+</section>
+{{ end }}
+{{ end }}

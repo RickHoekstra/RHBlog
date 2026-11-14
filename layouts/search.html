@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h1 class="page-title">{{ .Title }}</h1>
+<input id="search-input" class="search-input" type="search" placeholder="Search articles..." aria-label="Search articles" autocomplete="off" autofocus>
+<p id="search-status" class="meta" role="status"></p>
+<div id="search-results" class="search-results"></div>
+<noscript><p>Search needs JavaScript. You can also browse by <a href="{{ "categories/" | relURL }}">topic</a>.</p></noscript>
+{{ end }}
+{{ define "scripts" }}
+{{ $js := resources.Get "js/search.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" data-index="{{ "index.json" | relURL }}" defer></script>
+{{ end }}

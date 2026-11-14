@@ -1,0 +1,3 @@
+{{ with .GetTerms "categories" }}
+<p class="cats">{{ range . }}<a class="cat" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</p>
+{{ end }}

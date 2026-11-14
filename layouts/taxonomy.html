@@ -1,0 +1,15 @@
+{{ define "main" }}
+<p class="eyebrow">Browse</p>
+<h1 class="page-title">{{ .Title }}</h1>
+<div class="topic-grid">
+  {{ range .Data.Terms.ByCount }}
+  <a class="topic" href="{{ .Page.RelPermalink }}">
+    <strong>{{ .Page.Title }}</strong>
+    <span class="meta">{{ .Count }} {{ if eq .Count 1 }}article{{ else }}articles{{ end }}</span>
+  </a>
+  {{ end }}
+</div>
+{{ if eq .Data.Plural "categories" }}
+<p class="meta more-link">Looking for something specific? Browse <a href="{{ "tags/" | relURL }}">all tags</a> or use <a href="{{ "search/" | relURL }}">search</a>.</p>
+{{ end }}
+{{ end }}

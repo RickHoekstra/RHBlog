@@ -1,0 +1,17 @@
+# Each block below becomes a card on the Tools page.
+# Copy a block to add a tool; "type" and "url" are optional.
+
+- name: "Example PowerShell script"
+  type: "M365"
+  description: "Placeholder. Describe in one or two sentences what the script does and who it is for."
+  url: "https://github.com/YOUR-USERNAME"
+
+- name: "Example UniFi template"
+  type: "UniFi"
+  description: "Placeholder. For example a VLAN plan or a firewall rule set you reuse."
+  url: ""
+
+- name: "Example 3CX checklist"
+  type: "3CX"
+  description: "Placeholder. For example a go-live checklist or a provisioning template."
+  url: ""

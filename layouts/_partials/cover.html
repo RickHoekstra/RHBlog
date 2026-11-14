@@ -1,0 +1,13 @@
+{{/* Post thumbnail. Falls back to a generated placeholder when a post has no cover image. */}}
+{{ $page := .page }}
+{{ $width := .width | default 800 }}
+{{ $img := partial "cover-resource.html" $page }}
+{{ if $img }}
+  {{ $src := $img }}
+  {{ if and (ne $img.MediaType.SubType "svg") (gt $img.Width $width) }}{{ $src = $img.Resize (printf "%dx" $width) }}{{ end }}
+  <img class="cover-img" src="{{ $src.RelPermalink }}" alt="" loading="lazy"{{ if ne $img.MediaType.SubType "svg" }} width="{{ $src.Width }}" height="{{ $src.Height }}"{{ end }}>
+{{ else }}
+  <div class="cover-placeholder" aria-hidden="true">
+    <span>{{ index ($page.Params.categories | default (slice site.Title)) 0 }}</span>
+  </div>
+{{ end }}

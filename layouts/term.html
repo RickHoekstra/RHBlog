@@ -1,0 +1,11 @@
+{{ define "main" }}
+<p class="eyebrow">{{ if eq .Data.Plural "tags" }}Tag{{ else }}Topic{{ end }}</p>
+<h1 class="page-title">{{ .Title }}</h1>
+{{ with .Content }}<div class="prose term-intro">{{ . }}</div>{{ end }}
+{{ if eq .Data.Plural "categories" }}{{ partial "topics.html" . }}{{ end }}
+{{ $paginator := .Paginate .Pages 9 }}
+<div class="grid">
+  {{ range $paginator.Pages }}{{ partial "post-card.html" . }}{{ end }}
+</div>
+{{ partial "pagination.html" . }}
+{{ end }}
